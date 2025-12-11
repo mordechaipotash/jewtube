@@ -8,6 +8,7 @@ import { StatsBanner } from '@/components/stats-banner'
 import { AboutDialog } from '@/components/about-dialog'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { AuthButton } from '@/components/auth-button'
+import { HistoryList } from '@/components/history-list'
 import { searchVideos, type Video } from '@/lib/api'
 
 export default function Home() {
@@ -51,9 +52,7 @@ export default function Home() {
 
       <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-6 pb-32">
         {!hasSearched ? (
-          <div className="text-center py-20">
-            <p className="text-muted-foreground">Search for audio content</p>
-          </div>
+          <HistoryList />
         ) : videos.length === 0 && !isLoading ? (
           <div className="text-center py-20">
             <p className="text-muted-foreground">No results found</p>

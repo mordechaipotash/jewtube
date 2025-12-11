@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { usePlayerStore } from '@/lib/store'
 import { getStreamUrl, formatDuration } from '@/lib/api'
+import { addToHistory } from '@/lib/database'
 
 const SPEEDS = [1, 1.25, 1.5, 1.75, 2]
 
@@ -33,6 +34,8 @@ export function Player() {
       audioRef.current.playbackRate = speed
       audioRef.current.volume = volume
       audioRef.current.play()
+      // Save to history for logged-in users
+      addToHistory(currentVideo).catch(() => {})
     } catch (error) {
       console.error('Failed to load audio:', error)
       setIsPlaying(false)

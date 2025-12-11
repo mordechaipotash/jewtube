@@ -2,6 +2,16 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Video } from './api'
 
+interface AuthState {
+  user: { id: string; email: string } | null
+  setUser: (user: { id: string; email: string } | null) => void
+}
+
+export const useAuthStore = create<AuthState>()((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+}))
+
 interface PlayerState {
   currentVideo: Video | null
   isPlaying: boolean
